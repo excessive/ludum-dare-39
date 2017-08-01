@@ -16,7 +16,7 @@ class Stage01 {
 						hp:     1,
 						max_hp: 1,
 						alive:  true,
-						delay:  5,
+						delay:  3,
 						iframe: false,
 						speed:  10,
 						script: Script.straight_down_slow
@@ -549,8 +549,8 @@ class Stage01 {
 					enemy: {
 						id:     Blossom,
 						attach: [],
-						hp:     750000,
-						max_hp: 750000,
+						hp:     500000,
+						max_hp: 500000,
 						alive:  true,
 						delay:  0,
 						iframe: true,
@@ -1118,8 +1118,8 @@ class Stage01 {
 			enemy: {
 				id:     Rose,
 				attach: [],
-				hp:     1250000,
-				max_hp: 1250000,
+				hp:     750000,
+				max_hp: 750000,
 				alive:  true,
 				delay:  0,
 				iframe: true,

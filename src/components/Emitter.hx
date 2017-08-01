@@ -67,6 +67,7 @@ typedef Emitter = {
 	@:optional var time: Float;
 	@:optional var tween: Float;
 	@:optional var name: String;
+	@:optional var update: Emitter->Int->Void;
 	var batch: love.graphics.SpriteBatch;
 	var emitting: Bool;
 	var color: Vec3;
@@ -81,5 +82,4 @@ typedef Emitter = {
 	var velocity: Vec3;
 	var offset: Vec3;
 	var scale: Float;
-	var update: Null<Emitter->Int->Void>;
 }

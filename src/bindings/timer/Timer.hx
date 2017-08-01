@@ -24,5 +24,6 @@ extern class Timer {
 		}
 		return _tween(len, target, props, method);
 	}
+	static function clear(): Void;
 	static function cancel(handle: TimerHandle): Void;
 }

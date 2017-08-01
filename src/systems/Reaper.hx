@@ -43,8 +43,7 @@ class Reaper extends System {
 						radius: 0,
 						emitting: true,
 						velocity: new Vec3(0, 0, 0),
-						user_data: null,
-						update: null
+						user_data: null
 					}
 				]
 			}

@@ -16,6 +16,7 @@ class HUD {
 	static var line: Null<String> = null;
 	static var boss: Null<components.Enemy> = null;
 	static var revealed = false;
+	static var show_hud = true;
 	static var titlecard = {
 		name: "The Boss",
 		title: "",
@@ -34,8 +35,14 @@ class HUD {
 		Signal.register("killed player", function(params: Dynamic) {
 			var e: Entity = cast params;
 			dead = true;
+			revealed = false;
+			boss = null;
+			line = null;
+			titlecard.show = false;
+			show_hud = false;
 			Timer.tween(0.25, HUD, { notif_fade: 1 }, TweenMethod.OutBack);
 			Timer.after(2.25, function(fn) {
+				Timer.clear();
 				Stage.spawn(e.player);
 				Stage.init_stage();
 			});
@@ -46,12 +53,14 @@ class HUD {
 		Signal.register("boss battle", function(_e: Dynamic) {
 			var e: Entity = cast _e;
 			boss = e.enemy;
+			show_hud = true;
 		});
 		Signal.register("boss enter", function(_e: Dynamic) {
 			var e: Entity = cast _e;
 			titlecard.name  = Language.get('${e.enemy.id}-name');
 			titlecard.title = Language.get('${e.enemy.id}-title');
 			titlecard.show  = true;
+			show_hud = false;
 			Timer.script(function(wait) {
 				Timer.tween(0.25, titlecard, { scale: 1 }, TweenMethod.OutBack);
 				wait(5.0);
@@ -66,6 +75,8 @@ class HUD {
 		Signal.register("stage start", function(e) {
 			notif_fade = 0.0;
 			dead = false;
+			boss = null;
+			show_hud = true;
 		});
 		Signal.register("invulnerable", invuln);
 		Signal.register("vulnerable", function(_) {
@@ -139,6 +150,11 @@ class HUD {
 			Lg.printf(text, Anchor.center_x - 400, Anchor.bottom - 200 + spread, 800);
 			setColor(1, 1, 1, 1);
 			Lg.printf(text, Anchor.center_x - 400, Anchor.bottom - 200, 800);
+		}
+
+		if (!show_hud) {
+			Lg.setFont(oldf);
+			return;
 		}
 
 		var p = null;
