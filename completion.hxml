@@ -1,0 +1,10 @@
+-D no-compilation
+-D luajit
+-D lua-ver=5.1
+-D desktop
+
+-cp src/
+-cp src/bindings/
+
+-main Main
+-lua main.lua
